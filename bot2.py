@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
-OPENROUTER_API_KEY = "sk-or-v1-614043580d236deff6408d262f916642199ee52a652a"
+OPENROUTER_API_KEY = "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"
 
 def get_summary(keyword):
     url = "https://openrouter.ai/api/v1/chat/completions"
