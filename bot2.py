@@ -1,4 +1,6 @@
-TOKEN = os.getenv("BOT_TOKEN")  # safer for deploy
+import os
+
+TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"  
 
 edu_keywords = [
     "physical quantities", "fundamental units", "derived units", "si units",
@@ -322,7 +324,7 @@ async def edu_wiki_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Check if message contains any educational keyword
     for keyword in edu_keywords:
-        if keyword in message_text:
+        if f" {keyword} " in f" {message_text} ":
             try:
                 summary = wikipedia.summary(keyword, sentences=3)
                 await update.message.reply_text(f"📚 {keyword.title()} Summary:\n{summary}")
