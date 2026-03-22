@@ -1,21 +1,23 @@
-import requests
+# filename: bot.py
+import wikipedia
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
+TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"  # Telegram bot token daal do
 
-def get_summary(keyword):
+# Wikipedia summary function
+def get_wikipedia_summary(keyword):
     try:
-        url = f"https://api.duckduckgo.com/?q={keyword}&format=json&no_redirect=1"
-        resp = requests.get(url, timeout=10).json()
-        text = resp.get("AbstractText", "")
-        if text:
-            return text
-        else:
-            return "Bhai, short summary nahi mili 😅 Try another keyword."
-    except:
-        return "Kuch galat ho gaya 😅"
+        wikipedia.set_lang("en")
+        return wikipedia.summary(keyword, sentences=3)
+    except wikipedia.DisambiguationError as e:
+        return f"Multiple results found 😅 Try more specific: {e.options[0]}"
+    except wikipedia.PageError:
+        return f"Bhai, Wikipedia pe '{keyword}' nahi mila 😅"
+    except Exception as e:
+        return f"Kuch galat ho gaya 😅 (Error: {e})"
 
+# Handle messages
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text.startswith("@ewfffff_bot"):
@@ -23,12 +25,14 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not keyword:
             await update.message.reply_text("Bhai, keyword type karna zaruri hai!")
             return
-        summary = get_summary(keyword)
+        summary = get_wikipedia_summary(keyword)
         await update.message.reply_text(summary)
 
+# /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a short summary.")
+    await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a short Wikipedia summary.")
 
+# Main
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
