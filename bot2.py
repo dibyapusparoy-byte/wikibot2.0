@@ -2,7 +2,7 @@ import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = "YOUR_BOT_TOKEN_HERE"
+TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
 
 def get_summary(keyword):
     try:
