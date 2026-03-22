@@ -16,24 +16,24 @@ def get_summary(keyword):
         "Content-Type": "application/json"
     }
     data = {
-        "model": "gpt-4.1-mini",  # ya gpt-3.5-turbo
+        "model": "gpt-4.1-mini",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant who gives brief summaries."},
             {"role": "user", "content": f"Give a short, clear summary about '{keyword}' for a student."}
         ],
         "temperature": 0.5
     }
-    response = requests.post(url, headers=headers, json=data).json()
     try:
-        return response['choices'][0]['message']['content']
-    except:
-        return "Sorry bhai, summary fetch nahi ho payi 😅"
+        response = requests.post(url, headers=headers, json=data, timeout=15)
+        resp_json = response.json()
+        return resp_json['choices'][0]['message']['content']
+    except Exception as e:
+        return f"Summary fetch nahi ho payi 😅 (Error: {e})"
 
 # Function to handle messages
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text.startswith("@ewfffff_bot"):
-        # Extract keyword
         keyword = text.replace("@ewfffff_bot", "").strip()
         if keyword:
             summary = get_summary(keyword)
@@ -46,9 +46,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a brief summary.")
 
 # Main
-app = ApplicationBuilder().token(TOKEN).build()
-app.add_handler(CommandHandler("start", start))
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
-print("Bot running...")
-app.run_polling()
+if __name__ == "__main__":
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    
+    print("Bot running...")
+    app.run_polling()
