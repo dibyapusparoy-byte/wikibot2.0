@@ -315,45 +315,26 @@ edu_keywords = [
     "environmental issues", "pollution",
     "global warming"
 ]
-def format_summary(keyword, summary):
-    return (
-        f"📚 *{keyword.upper()}*\n\n"
-        f"🧠 *Concept:*\n{summary}\n\n"
-        f"✨ _Quick Tip: Revise this topic for JEE/Boards 💯_"
-    )
-
 async def edu_wiki_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_text = update.message.text.lower().strip()
     if not message_text:
         return
 
+    # Check if message contains any educational keyword
     for keyword in edu_keywords:
         if keyword in message_text:
             try:
                 summary = wikipedia.summary(keyword, sentences=3)
-                
-                beautified_text = format_summary(keyword, summary)
-
-                await update.message.reply_text(
-                    beautified_text,
-                    parse_mode="Markdown"
-                )
-                return
-
+                await update.message.reply_text(f"📚 {keyword.title()} Summary:\n{summary}")
+                return  # reply only once per message
             except wikipedia.exceptions.DisambiguationError as e:
-                await update.message.reply_text(
-                    f"⚠️ *Multiple results found!*\n\nDid you mean:\n👉 {', '.join(e.options[:5])}",
-                    parse_mode="Markdown"
-                )
+                await update.message.reply_text(f"Multiple options found for {keyword}. Did you mean: {', '.join(e.options[:5])}?")
                 return
-
             except wikipedia.exceptions.PageError:
-                await update.message.reply_text(
-                    f"❌ *No data found* for *{keyword}*",
-                    parse_mode="Markdown"
-                )
+                await update.message.reply_text(f"Sorry, couldn't find a page for {keyword}.")
                 return
 
+# Set up bot
 app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), edu_wiki_bot))
 
