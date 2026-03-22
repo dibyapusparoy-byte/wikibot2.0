@@ -1,10 +1,13 @@
 import os
-from telegram.ext import CommandHandler
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
-from telegram import Update
 import wikipedia
+from telegram import Update
+from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, filters, ContextTypes
 
-TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"  
+# Wikipedia setup
+wikipedia.set_lang("en")
+
+# TOKEN from Railway ENV
+TOKEN = os.getenv("TOKEN")
 
 edu_keywords = [
     "physical quantities", "fundamental units", "derived units", "si units",
@@ -322,39 +325,43 @@ edu_keywords = [
     "global warming"
 ]
 async def edu_wiki_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    message_text = update.message.text.lower().strip()
-    if not message_text:
+    if not update.message or not update.message.text:
         return
 
-    # Sort keywords (longest first)
-    sorted_keywords = sorted(edu_keywords, key=len, reverse=True)
+    message_text = update.message.text.lower().strip()
+    print("Message:", message_text)
 
-    for keyword in sorted_keywords:
+    for keyword in sorted(edu_keywords, key=len, reverse=True):
         if keyword in message_text:
             try:
-                summary = wikipedia.summary(keyword, sentences=3)
-                await update.message.reply_text(f"📚 {keyword.title()} Summary:\n{summary}")
+                summary = wikipedia.summary(keyword, sentences=2)
+                await update.message.reply_text(f"📚 {keyword.title()}:\n{summary}")
                 return
             except wikipedia.exceptions.DisambiguationError as e:
                 await update.message.reply_text(
-                    f"Multiple options found for {keyword}. Did you mean: {', '.join(e.options[:5])}?"
+                    f"Multiple results for {keyword}:\n{', '.join(e.options[:5])}"
                 )
                 return
             except wikipedia.exceptions.PageError:
-                await update.message.reply_text(f"Sorry, couldn't find a page for {keyword}.")
+                await update.message.reply_text(f"❌ No page found for {keyword}")
                 return
+            except Exception as e:
+                await update.message.reply_text("⚠️ Error fetching data")
+                print(e)
+                return
+
+# /say command
 async def say(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.args:
-        message = " ".join(context.args)  # jo tum likhoge
-        await update.message.reply_text(message)
+        await update.message.reply_text(" ".join(context.args))
     else:
-        await update.message.reply_text("❌ Please type something after /say")
+        await update.message.reply_text("❌ Use like: /say hello")
 
-
-# Set up bot
+# START BOT
 app = ApplicationBuilder().token(TOKEN).build()
+
 app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), edu_wiki_bot))
 app.add_handler(CommandHandler("say", say))
 
-print("Bot is running...")
-app.run_polling()
+print("✅ Bot is running...")
+app.run_polling(close_loop=False)
