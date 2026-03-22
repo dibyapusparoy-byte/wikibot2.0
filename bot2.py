@@ -322,15 +322,19 @@ async def edu_wiki_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not message_text:
         return
 
-    # Check if message contains any educational keyword
-    for keyword in edu_keywords:
-        if f" {keyword} " in f" {message_text} ":
+    # Sort keywords (longest first)
+    sorted_keywords = sorted(edu_keywords, key=len, reverse=True)
+
+    for keyword in sorted_keywords:
+        if keyword in message_text:
             try:
                 summary = wikipedia.summary(keyword, sentences=3)
                 await update.message.reply_text(f"📚 {keyword.title()} Summary:\n{summary}")
-                return  # reply only once per message
+                return
             except wikipedia.exceptions.DisambiguationError as e:
-                await update.message.reply_text(f"Multiple options found for {keyword}. Did you mean: {', '.join(e.options[:5])}?")
+                await update.message.reply_text(
+                    f"Multiple options found for {keyword}. Did you mean: {', '.join(e.options[:5])}?"
+                )
                 return
             except wikipedia.exceptions.PageError:
                 await update.message.reply_text(f"Sorry, couldn't find a page for {keyword}.")
