@@ -1,56 +1,54 @@
 import requests
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
+# Telegram bot token
 TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
+
+# OpenRouter API key
 OPENROUTER_API_KEY = "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"
 
-# 🤖 AI FUNCTION
-async def ai_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not update.message or not update.message.text:
-        return
-
-    user_text = update.message.text.lower()
-
-    # 🔥 FILTER ADD YAHI KARNA HAI
-    study_keywords = [
-        "what is", "define", "explain", "formula",
-        "derive", "numerical", "velocity", "force",
-        "mole", "atom", "integration", "derivative"
-    ]
-
-    if not any(word in user_text for word in study_keywords):
-        return  # ❌ ignore normal chat
-
+# Function to fetch summary from OpenRouter GPT
+def get_summary(keyword):
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "gpt-4.1-mini",  # ya gpt-3.5-turbo
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant who gives brief summaries."},
+            {"role": "user", "content": f"Give a short, clear summary about '{keyword}' for a student."}
+        ],
+        "temperature": 0.5
+    }
+    response = requests.post(url, headers=headers, json=data).json()
     try:
-        response = requests.post(
-            url="https://openrouter.ai/api/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "mistralai/mistral-7b-instruct",
-                "messages": [
-                    {"role": "user", "content": f"Explain this in simple Class 11/12 level with example:\n{user_text}"}
-                ]
-            }
-        )
+        return response['choices'][0]['message']['content']
+    except:
+        return "Sorry bhai, summary fetch nahi ho payi 😅"
 
-        data = response.json()
-        reply = data["choices"][0]["message"]["content"]
+# Function to handle messages
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
+    if text.startswith("@ewfffff_bot"):
+        # Extract keyword
+        keyword = text.replace("@ewfffff_bot", "").strip()
+        if keyword:
+            summary = get_summary(keyword)
+            await update.message.reply_text(summary)
+        else:
+            await update.message.reply_text("Bhai, keyword bhi type karna padega!")
 
-        await update.message.reply_text(f"🧠 AI Teacher:\n{reply[:1000]}")
+# Start bot
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a brief summary.")
 
-    except Exception as e:
-        await update.message.reply_text("⚠️ Error getting AI response")
-        print(e)
-
-# 🚀 BOT START
+# Main
 app = ApplicationBuilder().token(TOKEN).build()
+app.add_handler(CommandHandler("start", start))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), ai_reply))
-
-print("🚀 OpenRouter AI Bot Running...")
-
-app.run_polling(close_loop=False)
+print("Bot running...")
+app.run_polling()
