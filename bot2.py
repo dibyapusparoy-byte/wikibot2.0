@@ -1,55 +1,55 @@
+# filename: bot.py
+from googlesearch import search
 import requests
+from bs4 import BeautifulSoup
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
-OPENROUTER_API_KEY = "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"
 
-def get_summary(keyword):
-    url = "https://openrouter.ai/api/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {
-        "model": "gpt-4.1-mini",
-        "messages": [
-            {"role": "system", "content": "You are a helpful assistant who gives brief summaries."},
-            {"role": "user", "content": f"Give a short summary about '{keyword}' for a student."}
-        ],
-        "temperature": 0.5
-    }
+# Function to get top Google search result snippet
+def get_google_summary(keyword):
     try:
-        response = requests.post(url, headers=headers, json=data, timeout=15)
-        resp_json = response.json()
+        # search top 1 result
+        results = list(search(keyword, num_results=1))
+        if not results:
+            return "Bhai, search result nahi mila 😅"
+        url = results[0]
 
-        # Check if 'choices' exists
-        if 'choices' in resp_json and len(resp_json['choices']) > 0:
-            return resp_json['choices'][0]['message']['content']
-        elif 'error' in resp_json:
-            return f"API error: {resp_json['error']}"
-        else:
-            return f"Summary fetch nahi ho payi 😅 (Unexpected response)"
+        # fetch page content
+        resp = requests.get(url, timeout=10)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # try to get first paragraph
+        paragraphs = soup.find_all('p')
+        for p in paragraphs:
+            text = p.get_text().strip()
+            if len(text) > 50:  # take only meaningful paragraph
+                return text
+        return f"Top result: {url}"
     except Exception as e:
-        return f"Summary fetch nahi ho payi 😅 (Exception: {e})"
+        return f"Kuch galat ho gaya 😅 (Error: {e})"
 
+# Handle messages
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text.startswith("@ewfffff_bot"):
         keyword = text.replace("@ewfffff_bot", "").strip()
-        if keyword:
-            summary = get_summary(keyword)
-            await update.message.reply_text(summary)
-        else:
-            await update.message.reply_text("Bhai, keyword bhi type karna padega!")
+        if not keyword:
+            await update.message.reply_text("Bhai, keyword type karna zaruri hai!")
+            return
+        
+        summary = get_google_summary(keyword)
+        await update.message.reply_text(summary)
 
+# Start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a brief summary.")
+    await update.message.reply_text("Hey! Type @ewfffff_bot <keyword> to get a short summary from Google search.")
 
+# Main
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
-    print("Bot running...")
+    print("Bot running…")
     app.run_polling()
