@@ -1,4 +1,5 @@
 import os
+from telegram.ext import CommandHandler
 
 TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"  
 
@@ -339,10 +340,18 @@ async def edu_wiki_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except wikipedia.exceptions.PageError:
                 await update.message.reply_text(f"Sorry, couldn't find a page for {keyword}.")
                 return
+async def say(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args:
+        message = " ".join(context.args)  # jo tum likhoge
+        await update.message.reply_text(message)
+    else:
+        await update.message.reply_text("❌ Please type something after /say")
+
 
 # Set up bot
 app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), edu_wiki_bot))
+app.add_handler(CommandHandler("say", say))
 
 print("Bot is running...")
 app.run_polling()
