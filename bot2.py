@@ -10,7 +10,17 @@ async def ai_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not update.message or not update.message.text:
         return
 
-    user_text = update.message.text
+    user_text = update.message.text.lower()
+
+    # 🔥 FILTER ADD YAHI KARNA HAI
+    study_keywords = [
+        "what is", "define", "explain", "formula",
+        "derive", "numerical", "velocity", "force",
+        "mole", "atom", "integration", "derivative"
+    ]
+
+    if not any(word in user_text for word in study_keywords):
+        return  # ❌ ignore normal chat
 
     try:
         response = requests.post(
@@ -28,7 +38,6 @@ async def ai_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         data = response.json()
-
         reply = data["choices"][0]["message"]["content"]
 
         await update.message.reply_text(f"🧠 AI Teacher:\n{reply[:1000]}")
