@@ -11,10 +11,7 @@ OPENROUTER_API_KEY = "sk-or-v1-614043580d236deff6408d262f916642199ee52a652f6ed04
 # Function to fetch summary from OpenRouter GPT
 def get_summary(keyword):
     url = "https://openrouter.ai/api/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {OPENROUTER_API_KEY}", "Content-Type": "application/json"}
     data = {
         "model": "gpt-4.1-mini",
         "messages": [
@@ -26,6 +23,7 @@ def get_summary(keyword):
     try:
         response = requests.post(url, headers=headers, json=data, timeout=15)
         resp_json = response.json()
+        print("DEBUG RESPONSE:", resp_json)   # <--- ye add karo
         return resp_json['choices'][0]['message']['content']
     except Exception as e:
         return f"Summary fetch nahi ho payi 😅 (Error: {e})"
