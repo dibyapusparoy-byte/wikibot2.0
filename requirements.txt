@@ -1,2 +1,3 @@
-python-telegram-bot==22.7
-wikipedia
+python-telegram-bot==22.7.1
+requests==2.31.0
+aiohttp==3.9.0
