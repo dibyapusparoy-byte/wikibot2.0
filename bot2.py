@@ -64,7 +64,7 @@ topics_dict = {
 
     "algebra": "Study of polynomials, quadratic equations, sequences, etc.\nExamples:\n- Solving x^2 - 5x + 6 = 0\n- Arithmetic progression: 2,5,8,11,...",
 
-    "calculus basics": "Limits, derivatives, and integrals of functions.\nExamples:\n- Rate of change of distance (derivative)\n- Area under curve (integral)",
+    "calculus": "Limits, derivatives, and integrals of functions.\nExamples:\n- Rate of change of distance (derivative)\n- Area under curve (integral)",
 
     "coordinate geometry": "Study of points, lines, curves in 2D/3D space.\nExamples:\n- Distance formula\n- Equation of line y = mx + c",
 
@@ -114,18 +114,14 @@ topics_dict = {
 
 # ====== Telegram Handlers ======
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text
-    if text.startswith("@ewfffff_bot"):
-        keyword = text.replace("@ewfffff_bot", "").strip().lower()
-        if not keyword:
-            await update.message.reply_text("Bhai, keyword type karna zaruri hai!")
-            return
-        summary = topics_dict.get(keyword, "Bhai, summary nahi mili 😅")
+    text = update.message.text.strip().lower()  # normalize text
+    summary = topics_dict.get(text, None)       # check if keyword exists
+    if summary:
         await update.message.reply_text(summary)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "Hey! Type @ewfffff_bot <topic> to get exam-friendly Class 11-12 summary with examples."
+        "Hey! Just type any Class 11-12 topic keyword and I'll give you exam-friendly summary with examples!"
     )
 
 # ====== Main ======
