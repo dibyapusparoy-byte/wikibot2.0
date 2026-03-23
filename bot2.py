@@ -366,6 +366,147 @@ Examples:
 - Denaturation of egg whites when cooked.
 - DNA profiling used in forensic science."""
 
+    # ======== CLASS 11 MATHS ========
+    "sets": """The study of well-defined collections of distinct objects and their operations.
+Points:
+- Types: Finite, Infinite, Empty, and Power sets.
+- Operations: Union (all elements), Intersection (common elements), and Complement.
+- Venn Diagrams: Visual representation of relationships between different sets.
+
+Examples:
+- Finding the intersection of set A {1, 2} and set B {2, 3}.
+- Representing 'students who play cricket but not football' using sets.""",
+
+    "relations": """The study of connections between elements of two sets and functional mappings.
+Points:
+- Domain & Range: The set of all possible inputs and resulting outputs.
+- Functions: A special relation where every input has exactly one output.
+- Types of Functions: Modulus, Signum, Greatest Integer, and Polynomial functions.
+
+Examples:
+- Mapping children to their biological mothers (Function).
+- Finding the domain of f(x) = 1/x (all real numbers except 0).""",
+
+    "trigonometry": """The study of relationships between angles and sides of triangles and periodic functions.
+Points:
+- Radian Measure: Measuring angles in terms of pi (π) instead of degrees.
+- Identities: Fundamental formulas like sin²x + cos²x = 1 and compound angle formulas.
+- Periodic Nature: Understanding how trig functions repeat values over specific intervals.
+
+Examples:
+- Calculating the height of a tower using the angle of elevation.
+- Solving for x in sin(x) = 1/2.""",
+
+    "algebra": """Broad study of sequences, series, and complex number systems.
+Points:
+- Complex Numbers: Numbers involving 'i' (√-1) used to solve quadratic equations with negative discriminants.
+- Arithmetic & Geometric Progressions (AP/GP): Sequences with common differences or ratios.
+- Permutations & Combinations: Techniques for counting arrangements and selections.
+
+Examples:
+- Finding the 10th term of the series 2, 4, 8, 16... (GP).
+- Calculating how many ways 3 people can sit on 5 chairs.""",
+
+    "geometry 2d": """The study of coordinate geometry, straight lines, and conic sections.
+Points:
+- Straight Lines: Equations in various forms like slope-intercept (y=mx+c).
+- Conic Sections: Study of Circles, Parabolas, Ellipses, and Hyperbolas.
+- Distance Formula: Calculating the exact length between two points in a Cartesian plane.
+
+Examples:
+- Finding the center and radius of a circle from its equation.
+- Calculating the slope of a line passing through (1,2) and (3,4).""",
+
+    "limits": """The foundation of calculus dealing with the behavior of functions near specific points.
+Points:
+- Limits: Evaluating the value a function approaches as the input gets closer to a number.
+- Derivatives: Measuring the instantaneous rate of change of a function.
+- Continuity: Checking if a function's graph can be drawn without lifting the pen.
+
+Examples:
+- Finding the velocity of a car at exactly t = 2 seconds.
+- Evaluating the limit of (sin x)/x as x approaches 0.""",
+
+    "statistics": """The science of collecting, analyzing, and interpreting numerical data.
+Points:
+- Measures of Dispersion: Variance and Standard Deviation to check data spread.
+- Probability: Measuring the likelihood of an event occurring.
+- Mean Deviation: The average of absolute differences from the mean.
+
+Examples:
+- Calculating the risk factor in an insurance policy.
+- Predicting the outcome of a coin toss or dice roll.""",
+
+    # ======== CLASS 12 MATHS ========
+    "matrices": """Ordered rectangular arrays of numbers used to solve linear systems.
+Points:
+- Operations: Addition, Scalar Multiplication, and Matrix Multiplication.
+- Determinants: A scalar value that determines if a matrix has an inverse.
+- Inverse Matrix: Used to solve equations of the form AX = B.
+
+Examples:
+- Encrypting a message using a key matrix.
+- Solving a system of 3 equations with 3 variables.""",
+
+    "calculus 1": """Advanced study of continuity and the application of derivatives.
+Points:
+- Chain Rule: Method for finding the derivative of composite functions.
+- Maxima & Minima: Finding the highest and lowest points of a curve.
+- Rate of Change: Using derivatives to solve real-world physics and econ problems.
+
+Examples:
+- Finding the dimensions of a box that minimize material cost.
+- Calculating how fast the area of a circle grows as the radius increases.""",
+
+    "calculus 2": """The study of integration and its use in finding areas and volumes.
+Points:
+- Indefinite Integrals: Finding the anti-derivative of a function.
+- Definite Integrals: Calculating the area under a curve between two points.
+- Differential Equations: Equations involving derivatives that describe natural growth.
+
+Examples:
+- Finding the total distance traveled from a velocity-time graph.
+- Modeling the population growth of bacteria over time.""",
+
+    "vectors": """Quantities characterized by both magnitude and direction in space.
+Points:
+- Dot Product: A scalar result used to find the angle between two vectors.
+- Cross Product: A vector result perpendicular to the plane of two vectors.
+- Direction Cosines: Angles made by a vector with the X, Y, and Z axes.
+
+Examples:
+- Calculating the work done when a force moves an object.
+- Finding the shortest distance between two airplanes in flight.""",
+
+    "geometry 3d": """The study of lines and planes in three-dimensional space.
+Points:
+- Direction Ratios: Numbers proportional to the direction cosines of a line.
+- Planes: Finding the equation of a flat surface in 3D space.
+- Shortest Distance: Calculating the gap between two skew lines.
+
+Examples:
+- Designing 3D models for video games or architecture.
+- Determining the point where a line pierces a wall (plane).""",
+
+    "programming": """Linear Programming (LPP) for optimizing resources under constraints.
+Points:
+- Objective Function: The formula you want to maximize (profit) or minimize (cost).
+- Constraints: Limitations like budget, time, or raw materials.
+- Feasible Region: The common area on a graph that satisfies all inequalities.
+
+Examples:
+- A factory deciding how many units of two products to make for max profit.
+- Planning a diet that meets nutritional needs at minimum cost.""",
+
+    "probability 2": """Advanced probability including conditional events and distributions.
+Points:
+- Bayes' Theorem: Updating the probability of an event based on new evidence.
+- Binomial Distribution: Probability of 'n' successes in 'k' trials.
+- Random Variables: Assigning numerical values to outcomes of random experiments.
+
+Examples:
+- Testing the accuracy of a medical diagnostic test.
+- Predicting the number of heads in 10 tosses of a biased coin."""
 
 }
 
