@@ -8,109 +8,169 @@ TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"  # Telegram bot token
 # ====== Predefined Class 11-12 Topics with 4-5 line definitions + examples ======
 topics_dict = {
     # ======== CLASS 11 PHYSICS ========
-    "motion": "Motion describes the change in position of an object with time. It can be uniform (constant speed) or non-uniform (changing speed).\nExamples:\n- A car moving on a highway (uniform motion)\n- A ball rolling down a slope (non-uniform motion)",
+    "measurement": """Fundamental and derived units used to quantify physical phenomena.
+Points:
+- Accuracy vs Precision: Accuracy is how close a measurement is to the true value.
+- Dimensional Analysis: Using dimensions (M, L, T) to check equation correctness.
+- Significant Figures: Digits that carry meaningful contributions to resolution.
+Examples:
+- Using a Vernier Caliper for diameter measurements.
+- Converting units using dimensional consistency.""",
 
-    "laws of motion": "Newton's laws explain how forces affect motion:\n1st Law: A body remains at rest or in uniform motion unless acted upon by a force.\n2nd Law: Force = Mass x Acceleration.\n3rd Law: For every action, there is an equal and opposite reaction.\nExamples:\n- Rocket launch (3rd law)\n- Car braking suddenly (2nd law)\n- Ball stays still on table until pushed (1st law)",
+    "kinematics": """The study of motion without considering its causes (forces).
+Points:
+- Frame of Reference: The coordinate system from which motion is observed.
+- Projectile Motion: Objects moving in a parabolic path under gravity.
+- Relative Velocity: Velocity of an object as observed from a moving frame.
+Examples:
+- A ball thrown at an angle for maximum range.
+- A swimmer crossing a flowing river.""",
 
-    "rotation": "Rotation is the circular movement of an object around a fixed axis.\nExamples:\n- Earth spinning around its axis\n- Bicycle wheel spinning",
+    "motion laws": """Principles governing the relationship between a body and the forces acting on it.
+Points:
+- Inertia: The property of an object to resist changes in its state of motion.
+- Impulse: The product of a large force and the short time it acts.
+- Friction: Force opposing relative motion (static, kinetic, or rolling).
+Examples:
+- Recoil of a gun (Conservation of Momentum).
+- Banking of roads for safe vehicle turning.""",
 
-    "work": "Work is done when a force moves an object through a distance in the direction of force.\nExamples:\n- Lifting a book\n- Pushing a cart",
+    "work energy": """Scalar quantities associated with the motion and configuration of objects.
+Points:
+- Work-Energy Theorem: Work done by net force equals change in kinetic energy.
+- Conservative Forces: Forces where work depends only on start and end points.
+- Energy Conservation: Energy is only transformed, never created or destroyed.
+Examples:
+- A compressed spring storing potential energy.
+- A motor lifting a heavy load.""",
 
-    "energy": "Energy is the capacity to do work. Forms include kinetic energy (motion) and potential energy (position).\nExamples:\n- Moving car (kinetic)\n- Stretched rubber band (potential)",
+    "rotation": """Dynamics of systems rotating about a fixed axis.
+Points:
+- Center of Mass: Point where the entire mass of a system is concentrated.
+- Torque: The rotational analogue of force causing angular acceleration.
+- Moment of Inertia: Resistance of a body to rotational motion changes.
+Examples:
+- A figure skater spinning with pulled-in arms.
+- Using a wrench to loosen a tight bolt.""",
 
-    "gravitation": "Gravitation is the force of attraction between any two masses.\nExamples:\n- Objects falling to the ground\n- Earth attracting the Moon",
+    "gravitation": """The universal force of attraction between all matter.
+Points:
+- Kepler’s Laws: Three laws describing planetary orbital motion.
+- Gravity (g): Acceleration due to Earth's pull, varying with height/depth.
+- Escape Velocity: Minimum speed needed to break free from gravity.
+Examples:
+- Satellites in geostationary orbit.
+- Tides caused by the Moon's pull.""",
 
-    "oscillations": "Oscillations are repeated back-and-forth motions around an equilibrium point.\nExamples:\n- Pendulum of a clock\n- Vibrating guitar string",
+    "bulk matter": """Mechanical and thermal behavior of solids, liquids, and gases.
+Points:
+- Hooke’s Law: Stress is proportional to strain within elastic limits.
+- Bernoulli’s Principle: High fluid speed results in low pressure.
+- Surface Tension: Liquid surfaces shrinking to minimum area.
+Examples:
+- Hydraulic lifts in car workshops.
+- Spherical shape of raindrops.""",
 
-    "waves": "Waves are disturbances that transfer energy without transferring matter.\nExamples:\n- Sound waves\n- Water waves in a pond",
+    "thermodynamics": """The study of heat, temperature, and energy-work relations.
+Points:
+- First Law: Internal energy change equals heat added minus work done.
+- Adiabatic Process: A process with no heat exchange with surroundings.
+- Second Law: Heat cannot spontaneously flow from cold to hot.
+Examples:
+- Heat engines in cars.
+- Cooling effect of a refrigerator.""",
 
-    "thermodynamics": "Thermodynamics deals with heat, work, and energy transfer.\nExamples:\n- Steam engine converting heat to work\n- Refrigerators transferring heat from cold to hot region",
+    "oscillations": """To-and-fro motion of a particle about a mean position.
+Points:
+- SHM: Periodic motion where restoring force is proportional to displacement.
+- Resonance: Large amplitude when external force matches natural frequency.
+Examples:
+- A simple pendulum in a clock.
+- Vibrations in a tuning fork.""",
 
-    "optics": "Optics is the study of light, reflection, refraction, and optical instruments.\nExamples:\n- Lenses in spectacles\n- Mirrors in periscopes",
-
-    "electrostatics": "Electrostatics studies charges at rest and forces between them.\nExamples:\n- Rubbing a balloon and sticking it on wall\n- Lightning",
-
-    "current electricity": "Current electricity deals with the flow of charges in a conductor.\nExamples:\n- Electric circuits\n- Charging a mobile phone",
-
-    "magnetism": "Magnetism studies magnetic fields and forces between magnets.\nExamples:\n- Compass needle pointing North\n- Electric motors",
-
-    "modern physics": "Modern physics includes concepts like photoelectric effect, atomic models, and nuclear physics.\nExamples:\n- Solar cells (photoelectric effect)\n- Nuclear reactors (nuclear fission)",
-
-    # ======== CLASS 11 CHEMISTRY ========
-    "structure of atom": "Atoms have electrons, protons, and neutrons arranged in shells and energy levels.\nExamples:\n- Hydrogen atom: 1 proton, 1 electron\n- Sodium atom: electron configuration 2,8,1",
-
-    "periodic table": "Elements arranged by atomic number showing recurring properties.\nExamples:\n- Group 1: Alkali metals\n- Group 17: Halogens",
-
-    "chemical bonding": "Atoms form bonds to achieve stability: ionic, covalent, and metallic.\nExamples:\n- NaCl (ionic)\n- H2O (covalent)\n- Cu wire (metallic)",
-
-    "thermodynamics": "Study of heat and energy changes in chemical reactions.\nExamples:\n- Combustion of fuels\n- Dissolving salts in water (endothermic/exothermic)",
-
-    "equilibrium": "Chemical equilibrium occurs when rates of forward and reverse reactions are equal.\nExamples:\n- Haber process (NH3 formation)\n- Dissolving CO2 in soda",
-
-    "redox reactions": "Redox reactions involve transfer of electrons: oxidation and reduction.\nExamples:\n- Rusting of iron\n- Batteries generating electricity",
-
-    "hydrogen": "Hydrogen properties and compounds.\nExamples:\n- H2 as fuel\n- Water formation H2 + O2 → H2O",
-
-    "s-block elements": "Alkali and alkaline earth metals.\nExamples:\n- Na, K (reactive metals)\n- Ca, Mg in bones and teeth",
-
-    "p-block elements": "Groups 13-18 elements with distinct chemistry.\nExamples:\n- Boron, Aluminium (metalloids)\n- Halogens, Noble gases",
-
-    "organic chemistry basics": "Study of carbon compounds.\nExamples:\n- Methane (CH4)\n- Ethanol (C2H5OH)",
-
-    # ======== CLASS 11 MATHS ========
-    "sets": "A set is a collection of distinct objects.\nExamples:\n- {1,2,3}\n- {students in a class}",
-
-    "relations and functions": "Relation: mapping between sets. Function: each input has one output.\nExamples:\n- f(x) = x^2\n- y = sin(x)",
-
-    "algebra": "Study of polynomials, quadratic equations, sequences, etc.\nExamples:\n- Solving x^2 - 5x + 6 = 0\n- Arithmetic progression: 2,5,8,11,...",
-
-    "calculus": "Limits, derivatives, and integrals of functions.\nExamples:\n- Rate of change of distance (derivative)\n- Area under curve (integral)",
-
-    "coordinate geometry": "Study of points, lines, curves in 2D/3D space.\nExamples:\n- Distance formula\n- Equation of line y = mx + c",
-
-    "vectors": "Quantities having magnitude and direction.\nExamples:\n- Velocity vector\n- Force vector",
-
-    "probability": "Measure of likelihood of events.\nExamples:\n- Tossing a coin: P(head) = 1/2\n- Rolling a dice: P(6) = 1/6",
+    "waves": """Energy propagation through a medium without matter transport.
+Points:
+- Longitudinal Waves: Particles vibrate parallel to wave direction (Sound).
+- Doppler Effect: Frequency change due to source or observer motion.
+- Superposition: Resultant displacement is the sum of wave displacements.
+Examples:
+- Sound waves in air.
+- Bending of light around edges (Diffraction).""",
 
     # ======== CLASS 12 PHYSICS ========
-    "electromagnetic induction": "Changing magnetic field induces current in a conductor.\nExamples:\n- Electric generator\n- Induction stove",
+    "electrostatics": """The study of stationary electric charges and their fields.
+Points:
+- Coulomb’s Law: Force between charges follows the inverse square law.
+- Gauss’s Law: Total flux equals enclosed charge divided by permittivity.
+- Capacitance: Ability to store electric charge and energy.
+Examples:
+- Static shock from a door handle.
+- Storing energy in camera flash capacitors.""",
 
-    "alternating current": "Current changing direction periodically.\nExamples:\n- Household AC\n- Transformers",
+    "current": """The study of electric charge flow through conductors.
+Points:
+- Ohm’s Law: V = IR (Potential = Current x Resistance).
+- Kirchhoff’s Laws: Rules for charge and energy conservation in loops.
+- Drift Velocity: Average velocity of electrons under an electric field.
+Examples:
+- Electric circuits in household appliances.
+- Measuring resistance with a Potentiometer.""",
 
-    "electromagnetic waves": "Oscillating electric and magnetic fields propagate through space.\nExamples:\n- Radio waves\n- Light waves",
+    "magnetism": """Study of magnetic fields and their interaction with charges.
+Points:
+- Lorentz Force: Force on a charge in both electric and magnetic fields.
+- Ampere’s Law: Relationship between current and magnetic field loops.
+- Magnetic Materials: Categorized as Dia, Para, or Ferromagnetic.
+Examples:
+- Compass needles pointing North.
+- Galvanometers detecting small currents.""",
 
-    "semiconductors": "Materials with conductivity between conductors and insulators.\nExamples:\n- Silicon, Germanium\n- Diodes and transistors",
+    "induction": """Generation of electricity from magnetism and AC circuits.
+Points:
+- Faraday’s Law: EMF is induced when magnetic flux changes.
+- Lenz’s Law: Induced current opposes the change that created it.
+- RMS Value: Effective value of AC producing equivalent DC heat.
+Examples:
+- AC Generators in power plants.
+- Transformers in the electrical grid.""",
 
-    "communication systems": "Transmission of information using signals.\nExamples:\n- Internet, Mobile phones\n- Satellite communication",
+    "optics": """The behavior and interaction of light as rays and waves.
+Points:
+- Total Internal Reflection: Light reflecting fully inside a denser medium.
+- Huygens' Principle: Wavefronts acting as sources for secondary waves.
+- Interference: Superposition of light waves creating bright/dark spots.
+Examples:
+- Fiber optic cables for internet.
+- Rainbows and soap bubble colors.""",
 
-    # ======== CLASS 12 CHEMISTRY ========
-    "solid state": "Study of structure, properties of solids.\nExamples:\n- Crystalline: NaCl\n- Amorphous: Glass",
+    "quantum": """Physics of dual particle-wave nature and atomic models.
+Points:
+- Photoelectric Effect: Light striking metal to eject electrons.
+- Bohr Model: Quantized electron orbits in atoms.
+- De Broglie Waves: Moving particles behaving like waves.
+Examples:
+- Solar cells and light sensors.
+- Electron microscopes.""",
 
-    "solutions": "Homogeneous mixtures of solute and solvent.\nExamples:\n- Sugar in water\n- Saltwater",
+    "nuclei": """The study of nuclear forces, stability, and energy.
+Points:
+- Mass-Energy: E = mc² (Mass defect converted to energy).
+- Fission/Fusion: Splitting or joining nuclei to release energy.
+- Radioactivity: Decay of unstable nuclei (Alpha, Beta, Gamma).
+Examples:
+- Nuclear power generation.
+- Carbon dating of fossils.""",
 
-    "electrochemistry": "Chemical reactions producing electricity or using electricity.\nExamples:\n- Galvanic cells\n- Electroplating",
-
-    "chemical kinetics": "Study of reaction rates.\nExamples:\n- Rusting speed\n- Decomposition of H2O2",
-
-    "surface chemistry": "Phenomena at surfaces and interfaces.\nExamples:\n- Detergent action\n- Catalysis",
-
-    "organic chemistry advanced": "Includes carbonyl compounds, alcohols, amines, polymers.\nExamples:\n- Ethanol, Acetone\n- Nylon, Teflon",
-
-    # ======== CLASS 12 MATHS ========
-    "matrices": "Rectangular arrays of numbers.\nExamples:\n- [[1,2],[3,4]]\n- Transformation matrices in graphics",
-
-    "determinants": "Special number from square matrix used to solve systems.\nExamples:\n- Solving 2x2 linear equations\n- Area of triangle using coordinates",
-
-    "continuity and differentiability": "Study of smoothness and slope of functions.\nExamples:\n- Checking if f(x)=x^2 is continuous\n- Derivative of sin(x) is cos(x)",
-
-    "applications of derivatives": "Derivatives applied to max/min problems, motion, etc.\nExamples:\n- Maximizing area\n- Speed and acceleration of moving objects",
-
-    "integrals": "Inverse of derivatives; area under curves.\nExamples:\n- Area between curves\n- Total distance from velocity-time graph",
-
-    "vectors 3D": "Vectors in three-dimensional space.\nExamples:\n- Position vector of a point in 3D\n- Force in 3D space",
-
-    "probability advanced": "Conditional probability, distributions.\nExamples:\n- Probability of drawing red ball given first ball was green\n- Binomial distribution in experiments"
+    "semiconductors": """Physics of materials with controllable conductivity.
+Points:
+- P-N Junction: Base unit for diodes and transistors.
+- Rectification: Converting AC to DC using diodes.
+- Logic Gates: Circuits performing basic digital operations (AND, OR).
+Examples:
+- LED lights and screens.
+- Microchips in smartphones."""
 }
+
 
 # ====== Telegram Handlers ======
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
