@@ -186,9 +186,9 @@ Points:
 
 Examples:
 - LED lights and screens.
-- Microchips in smartphones."""
+- Microchips in smartphones.""",
 
-    # ======== CLASS 11 CHEMISTRY ========
+    
     "basic concepts": """The foundation of chemistry involving the study of matter and its measurements.
 Points:
 - Mole Concept: One mole contains exactly 6.022 x 10^23 particles (Avogadro's number).
@@ -364,7 +364,7 @@ Points:
 
 Examples:
 - Denaturation of egg whites when cooked.
-- DNA profiling used in forensic science."""
+- DNA profiling used in forensic science.""",
 
     # ======== CLASS 11 MATHS ========
     "sets": """The study of well-defined collections of distinct objects and their operations.
