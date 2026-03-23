@@ -187,6 +187,186 @@ Points:
 Examples:
 - LED lights and screens.
 - Microchips in smartphones."""
+
+    # ======== CLASS 11 CHEMISTRY ========
+    "basic concepts": """The foundation of chemistry involving the study of matter and its measurements.
+Points:
+- Mole Concept: One mole contains exactly 6.022 x 10^23 particles (Avogadro's number).
+- Stoichiometry: Calculating the amounts of reactants and products in a chemical reaction.
+- Empirical Formula: The simplest whole-number ratio of atoms in a compound.
+
+Examples:
+- Calculating the amount of CO2 produced when burning methane.
+- Determining the molarity of a salt solution.""",
+
+    "atom structure": """The study of subatomic particles and the arrangement of electrons in an atom.
+Points:
+- Quantum Numbers: Set of four numbers used to describe the position and energy of electrons.
+- Heisenberg Principle: It is impossible to determine both position and momentum of an electron simultaneously.
+- Aufbau Principle: Electrons fill lower energy orbitals before higher ones.
+
+Examples:
+- Writing the electronic configuration of Chromium (Cr).
+- Identifying elements based on their unique emission spectra.""",
+
+    "periodic table": """Classification of elements and the study of recurring chemical trends.
+Points:
+- Ionization Enthalpy: Energy required to remove an electron from a gaseous atom.
+- Electronegativity: The tendency of an atom to attract shared electrons in a bond.
+- Periodic Trends: Metallic character decreases and non-metallic character increases across a period.
+
+Examples:
+- Explaining why Fluorine is more reactive than Iodine.
+- Predicting the chemical properties of an unknown element.""",
+
+    "chemical bonding": """The study of forces that hold atoms together in molecules.
+Points:
+- VSEPR Theory: Predicts the 3D shape of molecules based on electron pair repulsion.
+- Hybridization: Mixing of atomic orbitals to form new equivalent hybrid orbitals (sp, sp2, sp3).
+- Hydrogen Bonding: Strong dipole-dipole attraction involving Hydrogen and F, O, or N.
+
+Examples:
+- Why water (H2O) has a bent shape.
+- The high boiling point of water compared to H2S.""",
+
+    "chem thermodynamics": """Study of energy changes, heat transfer, and spontaneity of reactions.
+Points:
+- Enthalpy (H): Total heat content of a system at constant pressure.
+- Gibbs Free Energy (G): Determines if a reaction is spontaneous (ΔG < 0).
+- Entropy (S): The measure of randomness or disorder in a system.
+
+Examples:
+- Calculating heat released during the combustion of fuels.
+- Predicting if ice will melt at a specific temperature.""",
+
+    "equilibrium": """The state where the rates of forward and reverse reactions are equal.
+Points:
+- Le Chatelier’s Principle: If a system at equilibrium is disturbed, it shifts to counteract the change.
+- pH Scale: A measure of the acidity or basicity of an aqueous solution.
+- Solubility Product (Ksp): Equilibrium between a solid and its ions in a saturated solution.
+
+Examples:
+- The Haber process for ammonia production.
+- How buffers in human blood maintain a constant pH.""",
+
+    "redox": """Reactions involving the transfer of electrons between species.
+Points:
+- Oxidation State: The formal charge an atom would have if all bonds were ionic.
+- Half-Reaction Method: Balancing equations by separating oxidation and reduction steps.
+- Oxidizing Agent: A substance that gains electrons and gets reduced.
+
+Examples:
+- Rusting of iron in the presence of moisture.
+- Chemical reactions inside a common AA battery.""",
+
+    "organic basics": """Introduction to carbon compounds and their nomenclature/mechanisms.
+Points:
+- IUPAC Nomenclature: Systematic naming of organic compounds.
+- Isomerism: Compounds with the same formula but different structures.
+- Inductive Effect: Permanent displacement of electrons along a carbon chain.
+
+Examples:
+- Distinguishing between Pentane and Isopentane.
+- Explaining why certain molecules are more acidic than others.""",
+
+    "hydrocarbons": """Study of Alkanes, Alkenes, and Alkynes.
+Points:
+- Substitution Reactions: Characteristic of saturated hydrocarbons (Alkanes).
+- Addition Reactions: Characteristic of unsaturated hydrocarbons (Alkenes/Alkynes).
+- Resonance in Benzene: The stability of aromatic rings due to delocalized pi-electrons.
+
+Examples:
+- Production of polymers like Polythene from Ethene.
+- Chlorination of methane under sunlight.""",
+
+    # ======== CLASS 12 CHEMISTRY ========
+    "solutions": """The study of homogeneous mixtures and their physical properties.
+Points:
+- Raoult’s Law: Vapor pressure of a solution is proportional to the mole fraction of the solvent.
+- Colligative Properties: Properties like boiling point elevation that depend only on particle count.
+- Henry’s Law: Gas solubility in a liquid is proportional to its partial pressure.
+
+Examples:
+- Adding salt to water to make it boil at a higher temperature.
+- Carbon dioxide dissolving in soda under high pressure.""",
+
+    "electrochemistry": """The relationship between chemical energy and electrical energy.
+Points:
+- Nernst Equation: Calculates cell potential under non-standard conditions.
+- Electrolysis: Using electricity to drive a non-spontaneous chemical change.
+- Kohlrausch's Law: Limiting molar conductivity of an electrolyte.
+
+Examples:
+- Gold plating jewelry using electrolysis.
+- Rechargeable Lithium-ion batteries in phones.""",
+
+    "chemical kinetics": """The study of reaction rates and their mechanisms.
+Points:
+- Order of Reaction: The power to which a reactant's concentration is raised in the rate law.
+- Activation Energy: The minimum energy required to initiate a chemical reaction.
+- Catalysis: Increasing reaction speed by lowering the activation energy barrier.
+
+Examples:
+- How enzymes speed up digestion.
+- Calculating the shelf-life of medicines.""",
+
+    "d-f block": """The study of transition and inner-transition elements.
+Points:
+- Variable Oxidation States: Transition metals can lose different numbers of electrons.
+- Lanthanoid Contraction: The steady decrease in atomic size across the 4f series.
+- Coordination Compounds: Molecules where a central metal atom is bonded to ligands.
+
+Examples:
+- Iron being used as a catalyst in industrial processes.
+- The use of Hemoglobin (Iron complex) in carrying oxygen.""",
+
+    "haloalkanes": """Organic compounds containing halogen atoms attached to carbon.
+Points:
+- Nucleophilic Substitution (SN1/SN2): Mechanisms for replacing halogens with other groups.
+- Optical Activity: The ability of chiral molecules to rotate plane-polarized light.
+
+Examples:
+- Use of Chloroform as an early anesthetic.
+- Production of Teflon from halogenated monomers.""",
+
+    "alcohols phenols": """Compounds containing the -OH (hydroxyl) group.
+Points:
+- Acidity of Phenol: Phenols are more acidic than alcohols due to resonance stabilization.
+- Dehydration: Converting alcohols into alkenes using acid catalysts.
+
+Examples:
+- Ethanol used as a fuel additive and antiseptic.
+- Synthesis of Aspirin from Salicylic acid.""",
+
+    "carbonyls": """The chemistry of Aldehydes, Ketones, and Carboxylic Acids.
+Points:
+- Nucleophilic Addition: The primary reaction type for the C=O functional group.
+- Aldol Condensation: Reaction between carbonyls containing alpha-hydrogen.
+
+Examples:
+- Formaldehyde used in preserving biological specimens.
+- Acetic acid being the main component of vinegar.""",
+
+    "amines": """Organic derivatives of ammonia containing Nitrogen.
+Points:
+- Basicity: Amines act as bases due to the lone pair on the Nitrogen atom.
+- Diazotization: Converting primary aromatic amines into diazonium salts.
+
+Examples:
+- Synthesis of colorful azo-dyes.
+- Adrenaline acting as a chemical messenger in the body.""",
+
+    "biomolecules": """The chemical basis of living organisms.
+Points:
+- Carbohydrates: Source of energy (Glucose, Starch, Cellulose).
+- Proteins: Polymers of amino acids linked by peptide bonds.
+- DNA/RNA: Nucleic acids that store and transmit genetic information.
+
+Examples:
+- Denaturation of egg whites when cooked.
+- DNA profiling used in forensic science."""
+
+
 }
 
 
