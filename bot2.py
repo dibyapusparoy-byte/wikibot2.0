@@ -4,32 +4,31 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from telegram.constants import ChatMemberStatus
 
 # Replace with your actual bot token
-TOKEN = "8784516259:AAE2030kvj3TUI24myprFXSbJG8lDzDZYqs"
+TOKEN = "8672169345:AAGAE5R-pbFQteCUkjKM-3DkP5rgp3_fPc4"
+
+# YOUR SPECIFIC TARGETS
+TARGET_CHAT_ID = -1002800090700
+TARGET_TOPIC_ID = 290
 
 async def get_ids(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Sends the Chat ID and Topic ID (if applicable)"""
     chat_id = update.effective_chat.id
-    # message_thread_id will be None if the group doesn't have topics enabled
     topic_id = update.effective_message.message_thread_id
     
     response = f"🆔 **Chat ID:** `{chat_id}`\n"
-    if topic_id:
-        response += f"话题 **Topic ID:** `{topic_id}`"
-    else:
-        response += "话题 **Topic ID:** None (General or not a topic)"
+    response += f"Topic ID: `{topic_id if topic_id else 'None'}`"
     
     await update.message.reply_text(response, parse_mode="Markdown")
 
 async def send_attendance_poll(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    chat_id = update.effective_chat.id
     user_id = update.effective_user.id
-    # Capture the thread ID to ensure the poll stays in the same topic
-    thread_id = update.effective_message.message_thread_id
 
-    member = await context.bot.get_chat_member(chat_id, user_id)
+    # STILL CHECK ADMIN STATUS in the chat where command is typed
+    member = await context.bot.get_chat_member(update.effective_chat.id, user_id)
     if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
         return 
 
+    # Date Logic
     today = datetime.date.today()
     current_day = today.isoweekday()
 
@@ -45,9 +44,10 @@ async def send_attendance_poll(update: Update, context: ContextTypes.DEFAULT_TYP
     poll_title = target_date.strftime("%A").upper()
     options = ["PRESENT ✅", "ABSENT ❌"]
 
+    # SEND TO THE SPECIFIC CHAT AND TOPIC
     await context.bot.send_poll(
-        chat_id=chat_id,
-        message_thread_id=thread_id, # This sends it to the specific topic
+        chat_id=TARGET_CHAT_ID,
+        message_thread_id=TARGET_TOPIC_ID, # Forces poll into topic 290
         question=f"ATTENDANCE FOR {poll_title}",
         options=options,
         is_anonymous=False,
@@ -57,9 +57,8 @@ async def send_attendance_poll(update: Update, context: ContextTypes.DEFAULT_TYP
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
     
-    # Register handlers
     app.add_handler(CommandHandler("poll", send_attendance_poll))
     app.add_handler(CommandHandler("getid", get_ids))
 
-    print("Bot is running. Use /poll or /getid 🚀")
+    print(f"Bot running. Polls will be sent to Chat {TARGET_CHAT_ID}, Topic {TARGET_TOPIC_ID} 🚀")
     app.run_polling()
