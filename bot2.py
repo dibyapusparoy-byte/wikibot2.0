@@ -11,7 +11,7 @@ TARGET_CHAT_ID = -1002800090700
 TARGET_TOPIC_ID = 290
 
 async def get_ids(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Sends the Chat ID and Topic ID (if applicable)"""
+    """Sends the Chat ID and Topic ID (if applicable) and deletes the command"""
     chat_id = update.effective_chat.id
     topic_id = update.effective_message.message_thread_id
     
@@ -19,11 +19,17 @@ async def get_ids(update: Update, context: ContextTypes.DEFAULT_TYPE):
     response += f"Topic ID: `{topic_id if topic_id else 'None'}`"
     
     await update.message.reply_text(response, parse_mode="Markdown")
+    
+    # Delete the /getid command message
+    try:
+        await update.message.delete()
+    except Exception as e:
+        print(f"Error deleting getid command: {e}")
 
 async def send_attendance_poll(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
 
-    # STILL CHECK ADMIN STATUS in the chat where command is typed
+    # Check admin status in the chat where command is typed
     member = await context.bot.get_chat_member(update.effective_chat.id, user_id)
     if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
         return 
@@ -47,12 +53,18 @@ async def send_attendance_poll(update: Update, context: ContextTypes.DEFAULT_TYP
     # SEND TO THE SPECIFIC CHAT AND TOPIC
     await context.bot.send_poll(
         chat_id=TARGET_CHAT_ID,
-        message_thread_id=TARGET_TOPIC_ID, # Forces poll into topic 290
+        message_thread_id=TARGET_TOPIC_ID, 
         question=f"ATTENDANCE FOR {poll_title}",
         options=options,
         is_anonymous=False,
         allows_multiple_answers=False
     )
+
+    # DELETE THE /poll COMMAND MESSAGE
+    try:
+        await update.message.delete()
+    except Exception as e:
+        print(f"Error deleting poll command: {e}. Make sure bot has 'Delete Messages' permission.")
 
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
